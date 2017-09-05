@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Time</title>
+    <style type="text/css">
+        html, body {
+            background-color: rgb(16, 20, 23);
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 12.5vw;
+            background-color: rgba(16, 20, 23, 0.6);
+            color: rgba(230, 242, 255, 1.0);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            width: 100%;
+            margin: 0;
+            padding: 5vh 2vw;
+        }
+
+        .nonessential {
+            color: rgba(230, 242, 255, 0.40);
+        }
+
+        .full-bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -100;
+        }
+
+        .full-bg .video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);   
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="full-bg">
+        <iframe id="embed-video" class="video" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h1 class="center">
+        <span id="h"></span>
+        <span class="nonessential">:</span>
+        <span id="m"></span>
+        <span class="nonessential">:</span>
+        <span id="s"></span>
+        <span class="nonessential">.</span>
+        <span id="ms"></span>
+
+    </h1>
+
+     <script type="text/javascript">
+        var videoId = new URL(window.location).searchParams.get('v') || 'I7Tps0M-l64';
+        document.getElementById('embed-video').setAttribute('src', 'https://www.youtube-nocookie.com/embed/'+videoId+'?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;mute=1');
+
+        setInterval(function () {
+            var time = new Date();
+            document.getElementById('h').innerText = ('00' + time.getHours()).slice(-2);
+            document.getElementById('m').innerText = ('00' + time.getMinutes()).slice(-2);
+            document.getElementById('s').innerText = ('00' + time.getSeconds()).slice(-2);
+            document.getElementById('ms').innerText = ('00' + time.getMilliseconds()).slice(-3);
+        }, 1);
+    </script>
+</body>
+
+</html>
